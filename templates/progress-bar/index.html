@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Bootstrap Progress Bar | Django | Celery | RabbitMQ</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,7 +12,8 @@
 
 <div class="container">
     <h2>Progress Bar Fetch Status From Backend</h2>
-    <p>The progress bar will refresh every 5 seconds and increase the progress bar +5 rate. If it reach 100 then start again from 0.</p>
+    <p>The progress bar will refresh every 5 seconds and increase the progress bar +5 rate. If it reach 100 then it
+        will start again from 0.</p>
     <div class="progress" id="chg-status">
         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="5"
              aria-valuemin="0"
@@ -23,18 +24,19 @@
 </div>
 <script type="application/javascript">
     let status = 5;
-    function getStatus(){
+
+    function getStatus() {
         $.ajax({
-            url: "http://127.0.0.1:8000/api/status/?end=" + status + "&format=json",
+            url: "http://127.0.0.1:8000/api/status/?progress=" + status + "&format=json",
             "method": "GET",
             "headers": {
                 "content-type": "application/json"
             },
             success: function (response) {
                 {#console.log(response.status);#}
-                $('#chg-status').html("<div id=\"progress\" class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow="+ response.status +" aria-valuemin=\"0\"\n" +
-                    "             aria-valuemax=\"100\" style=\"width:"+ response.status +"%\">\n" +
-                    "            "+ response.status +"%\n" +
+                $('#chg-status').html("<div id=\"progress\" class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=" + response.status + " aria-valuemin=\"0\"\n" +
+                    "             aria-valuemax=\"100\" style=\"width:" + response.status + "%\">\n" +
+                    "            " + response.status + "%\n" +
                     "        </div>");
 
                 {#console.log(response.status);#}
@@ -46,7 +48,7 @@
     }
 
     $(document).ready(function () {
-        setInterval(getStatus, 5000)
+        setInterval(getStatus, 5000)  // Fetch the data from backend every 5 seconds
     });
 </script>
 </body>

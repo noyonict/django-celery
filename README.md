@@ -1,10 +1,11 @@
 # Django-Celery
-Schedular job with Celery and RabbitMQ
+`Schedular job with Celery and RabbitMQ`
 
 # Requirements
 ```sh
 $ celery==4.4.2
 $ Django==3.0.4
+$ djangorestframework==3.11.0
 ```
 
 # Installation Guide Using Dockerfile
@@ -14,5 +15,5 @@ $ git clone https://github.com/noyonict/django-celery.git
 $ cd django-celery
 $ docker-compose up
 ```
-2. Then browse: 127.0.0.1:8800
+2. Then browse: 127.0.0.1:8000
 4. All done
