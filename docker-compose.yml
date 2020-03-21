@@ -1,0 +1,27 @@
+version: '3'
+volumes:
+  data:
+services:
+  python: &python
+    build:
+       context: .
+       dockerfile: Dockerfile
+    volumes:
+      - data:/code
+    ports:
+      - 8000:8000
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - rabbitmq
+      - celery_worker
+  ## message queue for celery
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+  celery_worker:
+    <<: *python
+    volumes:
+      - data:/code/
+    command: celery -A django_celery worker --loglevel=info
+    ports: []
+    depends_on:
+      - rabbitmq
