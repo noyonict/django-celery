@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .tasks import task_1, task_2
+from django_celery.celery import task_1, task_2
 
 
 def test_celery_task(request):

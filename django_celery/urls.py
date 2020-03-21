@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from celery_task.views import test_celery_task
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', test_celery_task, name='celery-task'),
+    path('celery/', test_celery_task, name='celery-task'),
+    path('', include('progress_bar.urls')),
 ]

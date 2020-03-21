@@ -10,6 +10,7 @@ services:
       - data:/code
     ports:
       - 8000:8000
+    command: python manage.py migrate
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - rabbitmq
@@ -21,7 +22,7 @@ services:
     <<: *python
     volumes:
       - data:/code/
-    command: celery -A django_celery worker --loglevel=info
+    command: celery -A django_celery worker --loglevel=info --beat
     ports: []
     depends_on:
       - rabbitmq
