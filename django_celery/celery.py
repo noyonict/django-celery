@@ -19,8 +19,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 @app.task
 def task_1():
     """
-    Iterative task task_1. Sleep 2 seconds with some dummy code to understand Iterative task. This
-    task will run every 60 seconds.
+    Iterative task task_1. Sleep 2 seconds with some dummy code to understand Iterative task.
     :return:
     """
     print('Start task 1')
@@ -33,8 +32,7 @@ def task_1():
 @app.task
 def task_2():
     """
-    Iterative task task_2. Sleep 3 seconds with some dummy code to understand Iterative task. This
-    task will run every 1 second.
+    Iterative task task_2. Sleep 3 seconds with some dummy code to understand Iterative task.
     :return:
     """
     print('Start task 2')
@@ -52,8 +50,8 @@ def setup_periodic_tasks(sender, **kwargs):
     :param kwargs:
     :return:
     """
-    # Calls task_1 every 60 seconds.
-    sender.add_periodic_task(60.0, task_1.s(), name='run every 60 seconds')
+    # Calls task_1 every 1 second.
+    sender.add_periodic_task(1.0, task_1.s(), name='run every 1 second')
 
     # Calls task_2 every 1 seconds.
     sender.add_periodic_task(1.0, task_2.s(), expires=10)

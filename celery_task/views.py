@@ -10,4 +10,4 @@ def test_celery_task(request):
     """
     task_1.delay()
     task_2.delay()
-    return HttpResponse('<h1>Task working</h1>')
+    return HttpResponse('<h1>Task_1 and Task_2 is working. Both are handled by Celery.</h1>')

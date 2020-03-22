@@ -20,6 +20,6 @@ def status(request):
     :return: progress + 5 if between 0  to 100
     """
     progress = request.GET.get('progress')
-    if not progress or int(progress) >= 100:
+    if not progress or 0 <= int(progress) >= 100:
         progress = 0
     return Response({"status": int(progress) + 5})
